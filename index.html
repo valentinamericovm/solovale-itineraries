@@ -1,176 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Custom travel itineraries, country information and travel consultations by Solo Vale." />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Custom travel itineraries, destination information and travel consultations by Solo Vale.">
   <title>Solo Vale | Custom Travel Itineraries</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Solo Vale home">
-      <img src="assets/logo.png" alt="Solo Vale Travel Blog logo" />
-    </a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">Menu</button>
-    <nav id="main-menu" class="main-nav">
-      <a href="#countries">Info by country</a>
-      <a href="#itinerary">Custom itinerary</a>
-      <a href="#blog">Blog entries</a>
-      <a href="#consultation">Phone consultation</a>
-      <a href="#about">About me</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="home" class="hero section-pad">
-      <div class="hero-copy">
-        <p class="eyebrow">Personal travel planning by Solo Vale</p>
-        <h1>Where do you want to go?</h1>
-        <p>Explore destinations, read practical country information or request a travel itinerary designed around your dates, budget and travel style.</p>
-      </div>
-
-      <div class="map-shell">
-        <div class="continent-label continent-europe" data-continent="Europe">Europe</div>
-        <div class="continent-label continent-asia" data-continent="Asia">Asia</div>
-        <div class="continent-label continent-na" data-continent="North America">North America</div>
-        <div class="continent-label continent-sa" data-continent="South America">South America</div>
-        <div class="continent-label continent-africa" data-continent="Africa">Africa</div>
-        <div class="continent-label continent-oceania" data-continent="Oceania">Oceania</div>
-        <div id="world-map" aria-label="Interactive world map"></div>
-      </div>
-      <p class="map-hint">Hover over a country to highlight it. Click a country or continent to explore.</p>
-    </section>
-
-    <section id="countries" class="section-pad pale-section">
-      <div class="section-heading">
-        <p class="eyebrow">Destination guide</p>
-        <h2>Info by country</h2>
-        <p>Select a continent and then a country. More destination guides can be added at any time by editing one simple data file.</p>
-      </div>
-
-      <div id="continent-filters" class="filter-row"></div>
-      <div id="country-grid" class="country-grid"></div>
-    </section>
-
-    <section id="itinerary" class="section-pad split-section">
-      <div class="section-heading sticky-copy">
-        <p class="eyebrow">Made for your trip</p>
-        <h2>Request a custom travel itinerary</h2>
-        <p>No copied lists and no generic package. Your itinerary is built around the way you actually like to travel.</p>
-        <div class="line-art" aria-hidden="true"></div>
-      </div>
-
-      <form id="itinerary-form" class="travel-form">
-        <div class="form-grid">
-          <label>Full name<input required name="name" type="text" autocomplete="name" /></label>
-          <label>Email<input required name="email" type="email" autocomplete="email" /></label>
-          <label>Destination or region<input required name="destination" type="text" placeholder="e.g. Japan, Southern Italy, Colombia" /></label>
-          <label>Travel dates<input name="dates" type="text" placeholder="Exact or approximate dates" /></label>
-          <label>Number of travellers<input name="travellers" type="number" min="1" value="1" /></label>
-          <label>Approximate total budget<input name="budget" type="text" placeholder="Currency included" /></label>
-        </div>
-
-        <fieldset>
-          <legend>Cities or places to include</legend>
-          <label class="choice"><input type="radio" name="places-choice" value="I have specific places" checked /> I have specific places in mind</label>
-          <label class="choice"><input type="radio" name="places-choice" value="Let Solo Vale decide" /> I would like Solo Vale to decide</label>
-          <textarea name="places" rows="3" placeholder="Tell me which places you already have in mind, or leave this blank."></textarea>
-        </fieldset>
-
-        <fieldset>
-          <legend>Preferred travel pace</legend>
-          <div class="choice-grid">
-            <label class="choice"><input type="radio" name="pace" value="Slow" /> Slow and relaxed</label>
-            <label class="choice"><input type="radio" name="pace" value="Balanced" checked /> Balanced</label>
-            <label class="choice"><input type="radio" name="pace" value="Fast" /> Fast, see as much as possible</label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Main interests</legend>
-          <div class="choice-grid">
-            <label class="choice"><input type="checkbox" name="interests" value="Culture and history" /> Culture and history</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Food" /> Local food</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Nature" /> Nature and hiking</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Beaches" /> Beaches</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Nightlife" /> Nightlife</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Hidden gems" /> Hidden gems</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Photography" /> Photography</label>
-            <label class="choice"><input type="checkbox" name="interests" value="Wellness" /> Wellness</label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>How detailed should the itinerary be?</legend>
-          <div class="detail-options">
-            <label class="detail-card"><input type="radio" name="detail" value="Essentials" required /><span><strong>Essentials</strong> Cities, route and things to do.</span></label>
-            <label class="detail-card"><input type="radio" name="detail" value="Complete" /><span><strong>Complete</strong> Activities, areas to stay and places to eat.</span></label>
-            <label class="detail-card"><input type="radio" name="detail" value="Maximum detail" /><span><strong>As detailed as possible</strong> Transport, accommodation suggestions, restaurants, practical information, visa notes and day by day planning.</span></label>
-          </div>
-        </fieldset>
-
-        <label>Anything else I should know?<textarea name="notes" rows="4" placeholder="Mobility needs, food restrictions, preferred accommodation, special occasions..."></textarea></label>
-        <button class="primary-button" type="submit">Request a quote</button>
-        <p class="form-note">This demo opens an email with the completed request. You can later connect the form to Formspree, Netlify Forms or your preferred booking system.</p>
-      </form>
-    </section>
-
-    <section id="consultation" class="section-pad consultation-section">
-      <div>
-        <p class="eyebrow">Need advice, not a full itinerary?</p>
-        <h2>Travel phone consultation</h2>
-        <p>A private one hour call to review your route, solve practical doubts, choose between destinations or improve an itinerary you already created.</p>
-      </div>
-      <div class="price-card">
-        <span class="price">$70</span>
-        <span>60 minute video or phone consultation</span>
-        <a class="primary-button" href="mailto:hello@solovale.com?subject=Travel consultation request">Request a consultation</a>
-      </div>
-    </section>
-
-    <section id="blog" class="section-pad pale-section">
-      <div class="section-heading">
-        <p class="eyebrow">Stories and practical guides</p>
-        <h2>Blog entries</h2>
-        <p>Each article can be assigned to a country, making it easy for readers to find your past trips and for you to add new posts.</p>
-      </div>
-      <div id="blog-grid" class="blog-grid"></div>
-    </section>
-
-    <section id="about" class="section-pad about-section">
-      <div class="about-logo"><img src="assets/logo.png" alt="Solo Vale logo" /></div>
-      <div class="about-copy">
-        <p class="eyebrow">About Solo Vale</p>
-        <h2>Travel planning based on real experience</h2>
-        <p>I am Valentina, a travel content creator, tour director and itinerary specialist from Southern Italy. I have travelled through more than forty countries and explored hundreds of cities, often independently and on the road with my scooter, Valhondino.</p>
-        <p>I create practical, personal itineraries for travellers who want more than a generic list of famous attractions. Every plan is adapted to your time, budget, interests and preferred pace.</p>
-        <div class="contact-list">
-          <a href="mailto:hello@solovale.com">hello@solovale.com</a>
-          <a href="https://www.instagram.com/solovale_travelblog/" target="_blank" rel="noopener">Instagram: @solovale_travelblog</a>
-          <a href="#itinerary">Request an itinerary</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <span>© <span id="year"></span> Solo Vale</span>
-    <span>Custom travel itineraries and consultations</span>
-  </footer>
-
-  <dialog id="country-dialog" class="country-dialog">
-    <button class="dialog-close" aria-label="Close">×</button>
-    <div id="country-dialog-content"></div>
-  </dialog>
-
-  <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
-  <script src="data/countries.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="assets/logo.png" alt="Solo Vale Travel Blog"></a>
+  <button class="menu-toggle" aria-expanded="false">Menu</button>
+  <nav class="main-nav"><a href="destinations.html">Info by country</a><a href="itinerary.html">Custom itinerary</a><a href="blog.html">Blog</a><a href="consultation.html">Consultation</a><a href="about.html">About me</a></nav>
+</header>
+<main class="page-shell">
+  <section class="hero wrap">
+    <div class="hero-top">
+      <div class="hero-copy"><p class="eyebrow">Personal travel planning by Solo Vale</p><h1>Where do you want to go?</h1><p>Choose a region to explore practical destination information, travel stories and custom itinerary options.</p></div>
+      <p class="hero-side">Start with a part of the world. You can select a specific country on the next page.</p>
+    </div>
+    <div class="map-stage">
+      <svg class="world-regions" viewBox="0 0 1200 560" role="img" aria-label="Interactive world regions map">
+        <a class="region-link" href="destinations.html?region=North%20America" aria-label="Explore North America"><path class="region-shape" d="M92 104 L188 72 286 92 340 145 315 202 258 219 223 269 157 246 112 204 62 164Z"/><text class="region-label" x="177" y="158">North America</text></a>
+        <a class="region-link" href="destinations.html?region=Central%20America%20and%20Caribbean" aria-label="Explore Central America and the Caribbean"><path class="region-shape" d="M260 259 L319 244 350 268 332 291 287 288Z"/><path class="region-shape" d="M346 249 C390 230 424 236 452 253" fill="none"/><text class="region-label small" x="294" y="318">Central America</text></a>
+        <a class="region-link" href="destinations.html?region=South%20America" aria-label="Explore South America"><path class="region-shape" d="M343 302 L411 291 468 336 451 404 417 486 373 523 349 443 320 365Z"/><text class="region-label" x="360" y="374">South</text><text class="region-label" x="355" y="397">America</text></a>
+        <a class="region-link" href="destinations.html?region=Europe" aria-label="Explore Europe"><path class="region-shape" d="M535 119 L602 104 657 119 685 151 644 174 598 162 558 178 519 150Z"/><text class="region-label" x="566" y="145">Europe</text></a>
+        <a class="region-link" href="destinations.html?region=Africa" aria-label="Explore Africa"><path class="region-shape" d="M550 192 L635 184 693 238 673 327 625 414 571 355 530 264Z"/><text class="region-label" x="583" y="270">Africa</text></a>
+        <a class="region-link" href="destinations.html?region=Middle%20East" aria-label="Explore the Middle East"><path class="region-shape" d="M672 176 L741 171 785 209 745 244 691 226Z"/><text class="region-label small" x="687" y="205">Middle East</text></a>
+        <a class="region-link" href="destinations.html?region=Asia" aria-label="Explore Asia"><path class="region-shape" d="M674 104 L806 70 957 91 1050 153 1016 234 918 260 845 227 775 181 706 171Z"/><text class="region-label" x="845" y="155">Asia</text></a>
+        <a class="region-link" href="destinations.html?region=Australia" aria-label="Explore Australia"><path class="region-shape" d="M900 354 L1009 332 1077 384 1042 453 946 446 884 402Z"/><text class="region-label" x="930" y="396">Australia</text></a>
+        <a class="region-link" href="destinations.html?region=New%20Zealand" aria-label="Explore New Zealand"><path class="region-shape" d="M1097 402 L1113 430 1097 462 1085 439Z"/><path class="region-shape" d="M1121 454 L1134 474 1116 499 1108 478Z"/><text class="region-label small" x="1064" y="525">New Zealand</text></a>
+      </svg>
+    </div>
+    <div><p class="map-note">Hover over an area and click to explore it.</p><div class="home-actions"><a class="primary-button" href="itinerary.html">Request a custom itinerary</a><a class="secondary-button" href="consultation.html">Book a consultation</a></div></div>
+  </section>
+</main>
+<footer><span>© <span data-year></span> Solo Vale</span><span>Custom travel itineraries and consultations</span></footer>
+<script src="shared.js"></script>
+</body></html>
